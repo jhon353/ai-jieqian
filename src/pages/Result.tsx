@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import type { Sign } from '../types/supabase'
 import { ArrowLeft, Share2, Trash2 } from 'lucide-react'
-import { ToriiGate, PineTree } from '../components/JapaneseDecorations'
+import { ToriiGate } from '../components/JapaneseDecorations'
 import ReactMarkdown from 'react-markdown'
 
 export function Result() {
@@ -77,7 +77,7 @@ export function Result() {
   if (id === 'temp') {
     return (
       <div className="min-h-screen japanese-bg pb-8">
-        <header className="bg-white/95 backdrop-blur-sm shadow-sm">
+        <header className="backdrop-blur-sm shadow-sm">
           <div className="max-w-sm mx-auto px-4 py-4">
             <button
               onClick={() => navigate('/')}
@@ -90,10 +90,7 @@ export function Result() {
         </header>
 
         <div className="max-w-sm mx-auto px-4 py-6">
-          {/* 松树装饰 */}
-          <div className="flex justify-center mb-4">
-            <PineTree />
-          </div>
+         
 
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-6 washi-paper">
             <h2 className="text-xl font-bold text-gray-900 mb-4">签文内容</h2>
@@ -136,7 +133,7 @@ export function Result() {
 
   return (
     <div className="min-h-screen japanese-bg pb-8">
-      <header className="bg-white/95 backdrop-blur-sm shadow-sm">
+      <header className="backdrop-blur-sm shadow-sm">
         <div className="max-w-sm mx-auto px-4 py-4 flex justify-between items-center">
           <button
             onClick={() => navigate(-1)}
@@ -161,10 +158,7 @@ export function Result() {
       </header>
 
       <div className="max-w-sm mx-auto px-4 py-6">
-        {/* 松树装饰 */}
-        <div className="flex justify-center mb-4">
-          <PineTree />
-        </div>
+       
 
         {sign ? (
           <>

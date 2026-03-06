@@ -12,22 +12,7 @@ export function ToriiGate() {
   )
 }
 
-export function PineTree() {
-  return (
-    <svg
-      width="40"
-      height="60"
-      viewBox="0 0 40 60"
-      className="text-green-700"
-    >
-      {/* 树干 */}
-      <rect x="18" y="35" width="4" height="25" fill="currentColor" />
-      {/* 树冠 */}
-      <polygon points="20,5 5,35 35,35" fill="currentColor" opacity="0.9" />
-      <polygon points="20,15 10,35 30,35" fill="currentColor" opacity="0.7" />
-    </svg>
-  )
-}
+
 
 export function WavePattern() {
   return (
