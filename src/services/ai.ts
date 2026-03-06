@@ -62,10 +62,11 @@ export async function interpretSign(
     const interpretPrompt = `你是一位精通日本文化和佛教签文（おみくじ）的解读专家。
 
 ${templeName ? `寺庙名称：${templeName}` : ''}
+
 签文内容：
 ${ocrText}
 
-请按以下格式解读：
+请按照以下格式解读：
 
 ## 运势等级
 （大吉、中吉、小吉、吉、末吉、凶、大凶等）
