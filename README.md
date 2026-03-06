@@ -1,15 +1,24 @@
-# AI 解签
+# 御签
 
-上传日本寺庙签纸图片，AI 帮你解读签文含义。
+上传日本寺庙签纸图片，AI 智能解读运势。
 
 ## 功能特点
 
 - 拍照或上传签纸图片
-- 自动识别签文文字（OCR）
+- 自动识别签文文字（使用智谱视觉 API）
 - AI 智能解读签文
-- 邮箱注册登录
+- 邮箱注册登录（Supabase Auth）
 - 历史记录保存
-- 移动端优化
+- 每日调用次数限制（5次/天）
+- 移动端 UI 优化
+- 日式风格设计
+
+## 调用次数限制
+
+- 每天最多 5 次解读
+- 每分钟最多 1 次请求
+- 使用 localStorage 本地存储
+- 第二天自动重置计数
 
 ## 技术栈
 
@@ -17,8 +26,7 @@
 - Vite
 - Tailwind CSS
 - Supabase (认证 + 数据库)
-- 百度 OCR API (文字识别)
-- Claude API (AI 解读)
+- 智谱 API (视觉识别 + 文本解读)
 
 ## 快速开始
 
@@ -32,23 +40,13 @@ npm install
 
 复制 `.env.example` 为 `.env` 并填入对应的 API Key：
 
-```bash
-cp .env.example .env
-```
-
-填写以下配置：
-
 ```env
 # Supabase 配置
 VITE_SUPABASE_URL=your_supabase_url_here
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
 
-# Claude API 配置
-VITE_CLAUDE_API_KEY=your_claude_api_key_here
-
-# 百度 OCR 配置
-VITE_BAIDU_API_KEY=your_baidu_api_key_here
-VITE_BAIDU_SECRET_KEY=your_baidu_secret_key_here
+# 智谱 API 配置
+VITE_ZHIPU_API_KEY=your_zhipu_api_key_here
 ```
 
 ### 3. 配置 Supabase
@@ -133,26 +131,78 @@ npm run dev
 ## API Key 获取方式
 
 ### Supabase
-- 注册账号并创建项目
-- 在 Settings > API 中获取 URL 和 anon key
 
-### Claude API
-- 访问 [console.anthropic.com](https://console.anthropic.com)
-- 创建 API Key
+1. 访问 [supabase.com](https://supabase.com) 创建免费账号
+2. 创建项目
+3. 在 Settings > API 中获取 URL 和 anon key
 
-### 百度 OCR
-- 访问 [cloud.baidu.com](https://cloud.baidu.com)
-- 开通「通用文字识别」服务
-- 获取 API Key 和 Secret Key
+### 智谱 API
+
+1. 访问 [open.bigmodel.cn](https://open.bigmodel.cn)
+2. 登录或注册账号
+3. 创建 API Key
+
+## 本地网络访问
+
+在手机上访问本地开发服务器：
+
+1. 段保电脑和手机连接同一个 WiFi
+2. 获取电脑 IP 地址：
+```bash
+ifconfig | grep -A 1 "en0" | grep "inet " | awk '{print $2}'
+```
+3. 在手机浏览器中访问：`http://你的IP:5173`
+
+## 部署到 Vercel
+
+### 方法 1：通过 Vercel CLI
+
+1. 安装 Vercel CLI：
+```bash
+npm i -g vercel
+```
+
+2. 登录 Vercel：
+```bash
+vercel login
+```
+
+3. 部署：
+```bash
+vercel
+```
+
+### 方法 2：通过 Vercel Dashboard
+
+1. 访问 [vercel.com](https://vercel.com)
+2. 导入你的 GitHub 仓库或直接上传项目
+3. 在项目设置中配置环境变量：
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+   - `VITE_ZHIPU_API_KEY`
+4. 点击 Deploy
+
+### 环境变量
+
+在 Vercel 中设置以下环境变量：
+
+| 变量名 | 值 | 说明 |
+|--------|-----|------|
+| `VITE_SUPABASE_URL` | Supabase URL | 从 Supabase Dashboard 获取 |
+| `VITE_SUPABASE_ANON_KEY` | Supabase anon key | 从 Supabase Dashboard 获取 |
+| `VITE_ZHIPU_API_KEY` | 智谱 API Key | 从智谱控制台获取 |
 
 ## 项目结构
 
 ```
 src/
 ├── components/       # 公共组件
-│   └── ProtectedRoute.tsx
+│   ├── ProtectedRoute.tsx
+│   └── JapaneseDecorations.tsx
 ├── contexts/         # 上下文
 │   └── AuthContext.tsx
+├── hooks/            # 自定义 hooks
+│   └── useRateLimit.ts
 ├── lib/              # 工具库
 │   └── supabase.ts
 ├── pages/            # 页面组件
@@ -162,7 +212,6 @@ src/
 │   ├── Result.tsx
 │   └── History.tsx
 ├── services/         # API 服务
-│   ├── ocr.ts
 │   ├── ai.ts
 │   └── storage.ts
 ├── types/            # 类型定义
@@ -170,12 +219,6 @@ src/
 └── App.tsx           # 主应用
 ```
 
-## 部署
+## License
 
-项目可以部署到任何支持 Vite 的平台：
-
-- Vercel
-- Netlify
-- Cloudflare Pages
-
-部署时记得设置环境变量。
+MIT
