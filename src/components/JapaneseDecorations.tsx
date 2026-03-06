@@ -5,7 +5,7 @@ export function ToriiGate() {
     <img
       src="/torii.png"
       alt="鸟居"
-      width="120"
+      width="60"
       height="auto"
       className="drop-shadow-lg"
     />
