@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext'
 import { Camera, X } from 'lucide-react'
 import { interpretSign } from '../services/ai'
 import { uploadImage, saveSign } from '../services/storage'
+import { ToriiGate, PineTree } from '../components/JapaneseDecorations'
 
 export function Upload() {
   const [preview, setPreview] = useState<string | null>(null)
@@ -77,11 +78,14 @@ export function Upload() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen japanese-bg">
       {/* Header */}
-      <header className="bg-white shadow-sm">
+      <header className="bg-white/80 backdrop-blur-sm shadow-sm">
         <div className="max-w-lg mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-bold text-gray-900">AI 解签</h1>
+          <div className="flex items-center gap-2">
+            <ToriiGate />
+            <h1 className="text-xl font-bold text-gray-900">御签</h1>
+          </div>
           <button
             onClick={signOut}
             className="text-sm text-gray-600 hover:text-gray-900"
@@ -96,14 +100,14 @@ export function Upload() {
         {!preview ? (
           <div
             onClick={handleCapture}
-            className="bg-white rounded-2xl shadow-sm border-2 border-dashed border-gray-300 p-8 text-center cursor-pointer hover:border-blue-500 transition active:scale-[0.98]"
+            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border-2 border-dashed border-gray-300 p-12 text-center cursor-pointer hover:border-red-400 transition active:scale-[0.98]"
           >
             <Camera className="w-16 h-16 mx-auto text-gray-400 mb-4" />
             <h2 className="text-lg font-medium text-gray-900 mb-2">上传签纸图片</h2>
             <p className="text-sm text-gray-500">点击拍照或选择图片</p>
           </div>
         ) : (
-          <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden washi-paper">
             <div className="relative">
               <img src={preview} alt="签纸" className="w-full" />
               <button
@@ -128,7 +132,7 @@ export function Upload() {
               value={templeName}
               onChange={(e) => setTempleName(e.target.value)}
               placeholder="例如：浅草寺"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none bg-white/50"
             />
           </div>
         )}
@@ -138,7 +142,7 @@ export function Upload() {
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className="w-full mt-6 bg-blue-600 text-white py-4 rounded-xl font-medium hover:bg-blue-700 transition disabled:bg-blue-400 disabled:cursor-not-allowed active:scale-[0.98]"
+            className="w-full mt-6 bg-red-600 text-white py-4 rounded-xl font-medium hover:bg-red-700 transition disabled:bg-red-400 disabled:cursor-not-allowed active:scale-[0.98]"
           >
             {loading ? '解读中...' : '开始解读'}
           </button>
@@ -147,7 +151,7 @@ export function Upload() {
         {/* History Button */}
         <button
           onClick={() => navigate('/history')}
-          className="w-full mt-3 bg-white text-gray-700 py-4 rounded-xl font-medium hover:bg-gray-50 transition active:scale-[0.98]"
+          className="w-full mt-3 bg-white/80 text-gray-700 py-4 rounded-xl font-medium hover:bg-gray-50 transition active:scale-[0.98]"
         >
           查看历史记录
         </button>
