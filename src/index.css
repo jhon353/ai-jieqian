@@ -18,7 +18,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(250, 249, 246, 0.85);
+  background: rgba(250, 249, 246, 0.75);
   pointer-events: none;
   z-index: -1;
 }
