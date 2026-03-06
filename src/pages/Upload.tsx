@@ -1,11 +1,10 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
-import { Camera, X, Clock } from 'lucide-react'
+import { Camera, X } from 'lucide-react'
 import { interpretSign } from '../services/ai'
 import { uploadImage, saveSign } from '../services/storage'
 import { ToriiGate } from '../components/JapaneseDecorations'
-import { useRateLimit } from '../hooks/useRateLimit'
 
 export function Upload() {
   const [preview, setPreview] = useState<string | null>(null)
@@ -15,21 +14,6 @@ export function Upload() {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const { user, signOut } = useAuth()
   const navigate = useNavigate()
-
-  const {
-    canMakeRequest,
-    recordRequest,
-    getRemainingCount,
-    getNextResetTime,
-    showLimitReached,
-    DAILY_LIMIT,
-  } = useRateLimit()
-
-  const [remainingCount, setRemainingCount] = useState(DAILY_LIMIT)
-
-  useEffect(() => {
-    setRemainingCount(getRemainingCount())
-  }, [])
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -48,27 +32,15 @@ export function Upload() {
   }
 
   const handleCapture = () => {
-    if (!canMakeRequest()) {
-      showLimitReached()
-      return
-    }
     fileInputRef.current?.click()
   }
 
   const handleSubmit = async () => {
     if (!preview || !user) return
 
-    if (!canMakeRequest()) {
-      showLimitReached()
-      return
-    }
-
     setLoading(true)
 
     try {
-      recordRequest()
-      setRemainingCount(remainingCount - 1)
-
       let imageUrl: string | null = null
 
       // 1. 上传图片到 Supabase Storage
@@ -90,8 +62,6 @@ export function Upload() {
       navigate(`/result/${signId}`)
     } catch (error: any) {
       console.error('Error:', error)
-      // 如果失败，恢复计数
-      setRemainingCount(remainingCount + 1)
       alert(error.message || '处理失败，请重试')
     } finally {
       setLoading(false)
@@ -106,8 +76,6 @@ export function Upload() {
       fileInputRef.current.value = ''
     }
   }
-
-  const canRequest = canMakeRequest()
 
   return (
     <div className="min-h-screen japanese-bg pb-8">
@@ -128,28 +96,13 @@ export function Upload() {
       </header>
 
       <div className="max-w-sm mx-auto px-4 py-6">
-        {/* 次数限制提示 */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-sm p-4 mb-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-gray-700">
-              <Clock className="w-5 h-5" />
-              <span className="text-sm">
-                今日剩余次数：<span className="font-bold text-red-600">{remainingCount}</span> / {DAILY_LIMIT}
-              </span>
-            </div>
-            <span className="text-xs text-gray-500">{getNextResetTime()}</span>
-          </div>
-        </div>
-
         {/* Upload Area */}
         {!preview ? (
           <div
             onClick={handleCapture}
-            className={`bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border-2 border-dashed p-12 text-center transition active:scale-[0.98] ${
-              canRequest ? 'cursor-pointer hover:border-red-400' : 'cursor-not-allowed opacity-60'
-            }`}
+            className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border-2 border-dashed p-12 text-center cursor-pointer hover:border-red-400 transition active:scale-[0.98]"
           >
-            <Camera className={`w-16 h-16 mx-auto mb-4 ${canRequest ? 'text-gray-400' : 'text-gray-300'}`} />
+            <Camera className="w-16 h-16 mx-auto mb-4 text-gray-400" />
             <h2 className="text-lg font-medium text-gray-900 mb-2">上传签纸图片</h2>
             <p className="text-sm text-gray-500">点击拍照或选择图片</p>
           </div>
@@ -188,14 +141,10 @@ export function Upload() {
         {preview && (
           <button
             onClick={handleSubmit}
-            disabled={loading || !canRequest}
-            className={`w-full mt-6 py-4 rounded-xl font-medium transition active:scale-[0.98] ${
-              canRequest && !loading
-                ? 'bg-red-600 text-white hover:bg-red-700'
-                : 'bg-red-400 text-white cursor-not-allowed'
-            }`}
+            disabled={loading}
+            className="w-full mt-6 bg-red-600 text-white py-4 rounded-xl font-medium hover:bg-red-700 transition disabled:bg-red-400 disabled:cursor-not-allowed active:scale-[0.98]"
           >
-            {loading ? '解读中...' : canRequest ? '开始解读' : '次数已用完'}
+            {loading ? '解读中...' : '开始解读'}
           </button>
         )}
 
