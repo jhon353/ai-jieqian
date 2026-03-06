@@ -80,7 +80,7 @@ export function Upload() {
   return (
     <div className="min-h-screen japanese-bg pb-8">
       {/* Header */}
-      <header className="bg-white/95 backdrop-blur-sm shadow-sm">
+      <header className="backdrop-blur-sm shadow-sm">
         <div className="max-w-sm mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <ToriiGate />

@@ -58,7 +58,7 @@ export function History() {
 
   return (
     <div className="min-h-screen japanese-bg pb-8">
-      <header className="bg-white/95 backdrop-blur-sm shadow-sm">
+      <header className="backdrop-blur-sm shadow-sm">
         <div className="max-w-sm mx-auto px-4 py-4 flex justify-between items-center">
           <button
             onClick={() => navigate('/')}
