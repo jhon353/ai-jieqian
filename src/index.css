@@ -2,27 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 日式风格 */
+/* 日式背景 */
 .japanese-bg {
-  background: linear-gradient(135deg, #faf9f6 0%, #f5f3ed 100%);
+  background-image: url('/background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .seigaiha-color {
   color: #b83b3b;
 }
 
-.torii-gate {
-  color: #c73e3e;
-}
-
 /* 纸质感 */
 .washi-paper {
   background-color: #fdfbf7;
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-}
-
-/* 垂直文字方向 */
-.vertical-text {
-  writing-mode: vertical-rl;
-  text-orientation: upright;
 }
