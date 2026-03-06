@@ -75,9 +75,9 @@ export function Result() {
   // 临时显示（开发用）
   if (id === 'temp') {
     return (
-      <div className="min-h-screen japanese-bg">
-        <header className="bg-white/80 backdrop-blur-sm shadow-sm">
-          <div className="max-w-lg mx-auto px-4 py-4">
+      <div className="min-h-screen japanese-bg pb-8">
+        <header className="bg-white/95 backdrop-blur-sm shadow-sm">
+          <div className="max-w-sm mx-auto px-4 py-4">
             <button
               onClick={() => navigate('/')}
               className="flex items-center text-gray-600 hover:text-gray-900"
@@ -88,13 +88,13 @@ export function Result() {
           </div>
         </header>
 
-        <div className="max-w-lg mx-auto px-4 py-6">
+        <div className="max-w-sm mx-auto px-4 py-6">
           {/* 松树装饰 */}
           <div className="flex justify-center mb-4">
             <PineTree />
           </div>
 
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 washi-paper">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-6 washi-paper">
             <h2 className="text-xl font-bold text-gray-900 mb-4">签文内容</h2>
             <div className="text-gray-700 whitespace-pre-wrap leading-relaxed mb-6">
               大吉
@@ -134,9 +134,9 @@ export function Result() {
   }
 
   return (
-    <div className="min-h-screen japanese-bg">
-      <header className="bg-white/80 backdrop-blur-sm shadow-sm">
-        <div className="max-w-lg mx-auto px-4 py-4 flex justify-between items-center">
+    <div className="min-h-screen japanese-bg pb-8">
+      <header className="bg-white/95 backdrop-blur-sm shadow-sm">
+        <div className="max-w-sm mx-auto px-4 py-4 flex justify-between items-center">
           <button
             onClick={() => navigate(-1)}
             className="flex items-center text-gray-600 hover:text-gray-900"
@@ -159,7 +159,7 @@ export function Result() {
         </div>
       </header>
 
-      <div className="max-w-lg mx-auto px-4 py-6">
+      <div className="max-w-sm mx-auto px-4 py-6">
         {/* 松树装饰 */}
         <div className="flex justify-center mb-4">
           <PineTree />
@@ -168,12 +168,12 @@ export function Result() {
         {sign ? (
           <>
             {sign.image_url && (
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden mb-4">
+              <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden mb-4">
                 <img src={sign.image_url} alt="签纸" className="w-full" />
               </div>
             )}
 
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 washi-paper">
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-6 washi-paper">
               {sign.temple_name && (
                 <p className="text-sm text-red-600 font-medium mb-4">{sign.temple_name}</p>
               )}

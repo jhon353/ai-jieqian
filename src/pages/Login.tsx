@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
-import { ToriiGate, SeigaihaIcon } from '../components/JapaneseDecorations'
+import { ToriiGate } from '../components/JapaneseDecorations'
 
 export function Login() {
   const [email, setEmail] = useState('')
@@ -27,14 +27,14 @@ export function Login() {
   }
 
   return (
-    <div className="min-h-screen japanese-bg flex items-center justify-center px-4 py-8">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen japanese-bg flex items-center justify-center px-6 py-8">
+      <div className="w-full max-w-sm">
         {/* 鸟居装饰 */}
         <div className="flex justify-center mb-6">
           <ToriiGate />
         </div>
 
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 washi-paper">
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-8 washi-paper">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">御签</h1>
             <p className="text-gray-600">上传签纸图片，智能解读</p>
@@ -73,7 +73,7 @@ export function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition"
-                placeholder="•••••••"
+                placeholder="••••••"
               />
             </div>
 

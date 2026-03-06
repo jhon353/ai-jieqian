@@ -39,14 +39,14 @@ export function Register() {
   }
 
   return (
-    <div className="min-h-screen japanese-bg flex items-center justify-center px-4 py-8">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen japanese-bg flex items-center justify-center px-6 py-8">
+      <div className="w-full max-w-sm">
         {/* 鸟居装饰 */}
         <div className="flex justify-center mb-6">
           <ToriiGate />
         </div>
 
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 washi-paper">
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-8 washi-paper">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">御签</h1>
             <p className="text-gray-600">创建账号，开始你的解签之旅</p>

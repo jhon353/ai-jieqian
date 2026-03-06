@@ -57,9 +57,9 @@ export function History() {
   }
 
   return (
-    <div className="min-h-screen japanese-bg">
-      <header className="bg-white/80 backdrop-blur-sm shadow-sm">
-        <div className="max-w-lg mx-auto px-4 py-4 flex justify-between items-center">
+    <div className="min-h-screen japanese-bg pb-8">
+      <header className="bg-white/95 backdrop-blur-sm shadow-sm">
+        <div className="max-w-sm mx-auto px-4 py-4 flex justify-between items-center">
           <button
             onClick={() => navigate('/')}
             className="flex items-center text-gray-600 hover:text-gray-900"
@@ -80,10 +80,10 @@ export function History() {
         </div>
       </header>
 
-      <div className="max-w-lg mx-auto px-4 py-6">
+      <div className="max-w-sm mx-auto px-4 py-6">
         {signs.length === 0 ? (
           <div className="text-center py-12">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 washi-paper">
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-8 washi-paper">
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Plus className="w-8 h-8 text-gray-400" />
               </div>
@@ -103,7 +103,7 @@ export function History() {
               <div
                 key={sign.id}
                 onClick={() => navigate(`/result/${sign.id}`)}
-                className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm p-4 cursor-pointer hover:shadow-md transition active:scale-[0.98]"
+                className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-sm p-4 cursor-pointer hover:shadow-md transition active:scale-[0.98]"
               >
                 <div className="flex gap-4">
                   {sign.image_url && (

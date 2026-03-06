@@ -6,8 +6,21 @@
 .japanese-bg {
   background-image: url('/background.png');
   background-size: cover;
-  background-position: center;
+  background-position: top center;
   background-attachment: fixed;
+}
+
+/* 背景遮罩，降低透明度 */
+.japanese-bg::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(250, 249, 246, 0.85);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .seigaiha-color {

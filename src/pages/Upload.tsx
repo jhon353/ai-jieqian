@@ -78,10 +78,10 @@ export function Upload() {
   }
 
   return (
-    <div className="min-h-screen japanese-bg">
+    <div className="min-h-screen japanese-bg pb-8">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm shadow-sm">
-        <div className="max-w-lg mx-auto px-4 py-4 flex justify-between items-center">
+      <header className="bg-white/95 backdrop-blur-sm shadow-sm">
+        <div className="max-w-sm mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <ToriiGate />
             <h1 className="text-xl font-bold text-gray-900">御签</h1>
@@ -95,19 +95,19 @@ export function Upload() {
         </div>
       </header>
 
-      <div className="max-w-lg mx-auto px-4 py-6">
+      <div className="max-w-sm mx-auto px-4 py-6">
         {/* Upload Area */}
         {!preview ? (
           <div
             onClick={handleCapture}
-            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border-2 border-dashed border-gray-300 p-12 text-center cursor-pointer hover:border-red-400 transition active:scale-[0.98]"
+            className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border-2 border-dashed border-gray-300 p-12 text-center cursor-pointer hover:border-red-400 transition active:scale-[0.98]"
           >
             <Camera className="w-16 h-16 mx-auto text-gray-400 mb-4" />
             <h2 className="text-lg font-medium text-gray-900 mb-2">上传签纸图片</h2>
             <p className="text-sm text-gray-500">点击拍照或选择图片</p>
           </div>
         ) : (
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden washi-paper">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden washi-paper">
             <div className="relative">
               <img src={preview} alt="签纸" className="w-full" />
               <button
@@ -151,7 +151,7 @@ export function Upload() {
         {/* History Button */}
         <button
           onClick={() => navigate('/history')}
-          className="w-full mt-3 bg-white/80 text-gray-700 py-4 rounded-xl font-medium hover:bg-gray-50 transition active:scale-[0.98]"
+          className="w-full mt-3 bg-white/90 text-gray-700 py-4 rounded-xl font-medium hover:bg-gray-50 transition active:scale-[0.98]"
         >
           查看历史记录
         </button>
