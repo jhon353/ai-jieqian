@@ -174,8 +174,8 @@ export function Result() {
               )}
 
               <h2 className="text-xl font-bold text-gray-900 mb-4">签文内容</h2>
-              <div className="text-gray-700 whitespace-pre-wrap leading-relaxed mb-6">
-                {sign.ocr_text}
+              <div className="markdown-body text-gray-700 whitespace-pre-wrap leading-relaxed mb-6">
+                <ReactMarkdown>{sign.ocr_text}</ReactMarkdown>
               </div>
 
               <h2 className="text-xl font-bold text-gray-900 mb-4">智能解读</h2>
