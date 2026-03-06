@@ -179,7 +179,7 @@ export function Result() {
               </div>
 
               <h2 className="text-xl font-bold text-gray-900 mb-4">智能解读</h2>
-              <div className="markdown-body text-gray-700 whitespace-pre-wrap leading-relaxed">
+              <div className="markdown-body text-gray-700  leading-relaxed">
                 <ReactMarkdown>{sign.interpretation}</ReactMarkdown>
               </div>
             </div>
